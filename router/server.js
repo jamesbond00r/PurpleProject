@@ -6,7 +6,17 @@ const port = 3001
 
 app.get('/', (req, res) => res.send('Hello Purple wave!'))
 
+app.post('/', (req, res) => {
+	 res.send('Received a POST Method');
+});
 
+app.put('/', (req,res) => {
+	return res.send('Received a PUT Method');
+});
+
+app.delete('/', (req,res) => {
+	return res.send("Received a DELETE Method");
+});
 
  //Catches all for urls
 app.get('*', (req, res) => res.sendFile(__dirname+ '/404.html'))
