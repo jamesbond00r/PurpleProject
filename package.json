@@ -13,7 +13,7 @@
   },
   "scripts": {
     "start": "PORT=12345 react-scripts start",
-    "build": "react-scripts build",
+    "build": "PORT=12345 react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "run": "server.js"
