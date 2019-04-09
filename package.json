@@ -18,6 +18,7 @@
     "run" : "server.js"
    
   },
+
   "eslintConfig": {
     "extends": "react-app"
   },
