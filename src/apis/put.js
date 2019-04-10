@@ -1,22 +1,20 @@
-
 import React, { Component } from 'react';
 import axios from "axios";
 
-class Call extends React.Component {
+class Put extends React.Component {
     state = {
-        error: null,
-        isLoaded: false,
-        items: []
-    };
+	error: null,
+	isLoaded: false,
+	items: []
+};
 
 	componentDidMount(){
-    axios.get("http://34.204.52.29:3001/").then(
+    axios.put("http://34.204.52.29:3001/", "hi").then(
         result => {
           this.setState({
             isLoaded: true,
             items: result.data
-          }).catch(function(error) {
-          console.log('What happened? ' + error.response.data)});
+          });
     },
         error => {
             this.setState({
@@ -45,5 +43,4 @@ class Call extends React.Component {
          </div>
 );}}}
 
-export default Call;
-
+export default Put;
