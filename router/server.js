@@ -5,6 +5,7 @@ const router = express.Router();
 const port = 3001;
 const bodyParser = require("body-parser");
 
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -27,3 +28,4 @@ app.get('*', (req, res) => res.sendFile(__dirname+ '/404.html'))
 
 
 app.listen(port, () => console.log(`Server has started on ${port}`))
+
