@@ -61,10 +61,14 @@ app.put('/', function(req, res, next) {
 });
 });
 
-
-app.delete('/', (req,res) => {
-	return res.send("Received a DELETE Method");
+app.delete('/', function(req, res, next) {
+            connection.query("DELETE FROM test WHERE name_id =2", function(error, results, fields){
+             if(error) console.log(error)
+            return  res.send("Delete");
 });
+});
+
+
 
  //Catches all for urls
 app.get('*', (req, res) => res.sendFile(__dirname+ '/404.html'))
