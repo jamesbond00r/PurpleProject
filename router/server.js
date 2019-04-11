@@ -54,9 +54,13 @@ app.post('/', function(req, res, next) {
 });
 
 
-app.put('/', (req,res) => {
-	return res.send('Received a PUT Method');
+app.put('/', function(req, res, next) {
+            connection.query("UPDATE test SET name ='Updated'  WHERE name_id = 2", function(error, results, fields){
+             if(error) console.log(error)
+            return  res.send("Updated");
 });
+});
+
 
 app.delete('/', (req,res) => {
 	return res.send("Received a DELETE Method");
