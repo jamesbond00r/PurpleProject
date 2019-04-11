@@ -5,6 +5,7 @@ var connection = mysql.createConnection({
     port : '8888',
     password : 'VYnZhYXRpFgWakwv',
     database : 'interview9',
+    schema: 'interview9'
 
 
 });
