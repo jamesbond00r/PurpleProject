@@ -5,9 +5,9 @@ const router = express.Router();
 const port = 3003;
 const bodyParser = require("body-parser");
 const mysql = require('mysql');
-const Flatted = require('flatted');
 
-var connection = mysql.createConnection({
+
+  var connection = mysql.createConnection({
     host      : '34.204.52.29',
     port      : '3306',
     user      : 'clarkr',
@@ -16,19 +16,10 @@ var connection = mysql.createConnection({
   });
 
 connection.connect(function(err){
-    if (err) console.log(err);
+    if(err) console.log(err);
     console.log("Connected!");
     });
 
-
-
-var query = connection.query('SELECT 1 + 1  AS solution', function(error, res, fields){
-    if(error) console.log(error)
-    console.log(res[0])
-       return (res[0]);
-});
-
-connection.end();
 
 
 app.all('/', function(req,res,next) {
@@ -42,8 +33,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 
 
-app.get('/', (req, res) =>{
- return  res.send(`query ${query}`);
+app.get('/', function(req, res, next) {
+	     connection.query('SELECT * FROM test', function(error, results, fileds){
+           if(error) console.log(error);
+           res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
+});
+
 });
   
 
