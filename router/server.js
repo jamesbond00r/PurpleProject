@@ -35,16 +35,24 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get('/', function(req, res, next) {
 	     connection.query('SELECT * FROM test', function(error, results, fileds){
-           if(error) console.log(error);
-           res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
+           if(error){
+		res.send(JSON.stringify({"Status": 500, "error": error, "response": null}));
+           } else {
+           res.send(JSON.stringify({"status": 200, "error": null, "response": results}))
+           //connection.end()
+        }
 });
 
 });
   
 
-app.post('/', (req, res) => {
-	 res.send('Received a POST Method');
+app.post('/', function(req, res, next) {
+            connection.query('INSERT INTO  test (name) VALUES("PurpleWave")', function(error, results, fields){
+             if(error) console.log(error)
+            return  res.send("It worked");
 });
+});
+
 
 app.put('/', (req,res) => {
 	return res.send('Received a PUT Method');
