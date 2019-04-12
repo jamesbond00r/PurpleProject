@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const path = require('path');
 const router = express.Router();
-const port = 3003;
+const port = 3050;
 const bodyParser = require("body-parser");
 const mysql = require('mysql');
 
@@ -34,20 +34,21 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 
 app.get('/', function(req, res, next) {
-	     connection.query('SELECT * FROM test', function(error, results, fileds){
+	     connection.query('SELECT name FROM test', function(error, results, fileds){
            if(error){
 		res.send(JSON.stringify({"Status": 500, "error": error, "response": null}));
            } else {
-           res.send(JSON.stringify({"status": 200, "error": null, "response": results}))
+           res.send({test : results})
            //connection.end()
         }
 });
 
 });
   
+var rand = Math.floor(Math.random()*11);
 
 app.post('/', function(req, res, next) {
-            connection.query('INSERT INTO  test (name) VALUES("PurpleWave")', function(error, results, fields){
+            connection.query('INSERT INTO  test (name) VALUES("guy")', function(error, results, fields){
              if(error) console.log(error)
             return  res.send("It worked");
 });

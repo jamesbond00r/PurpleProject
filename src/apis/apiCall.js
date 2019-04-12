@@ -1,4 +1,5 @@
 
+
 import React, { Component } from 'react';
 import axios from "axios";
 
@@ -7,16 +8,17 @@ class Call extends React.Component {
  state = {
         error: null,
         isLoaded: false,
-        items: []
+        users:[]
     };
        //Add api in componentDidMount to make sure the 
        // app loaded before making api call
 	componentDidMount(){
-    axios.get("http://34.204.52.29:3001/").then(
-        result => {
+    axios.get("http://34.204.52.29:3050/")
+	.then( result => JSON.stringify(result).split(" "))
+	.then(users =>{
           this.setState({
             isLoaded: true,
-            items: result.data
+            users: users
           })
     }, 
         error => {
@@ -29,7 +31,7 @@ class Call extends React.Component {
        }
 
     render(){
-     const { error, isLoaded, items } = this.state;
+     const { error, isLoaded, users } = this.state;
        //if there is an error load the error message
        if (error) {
         return <div>Error: {error.message}</div>;
@@ -41,13 +43,16 @@ class Call extends React.Component {
          //if everything works load the information into the  UI
            else {
            return(
-              <div>
-               <div>
-              {items}
-                </div>
-           
+	<div>
+	<h1>USers</h1>
+	{this.state.users.map(user=>
+	<div>{user}</div>
+)}
+		 
          </div>
-);}}}
+               
+);}
+}}
 
 export default Call;
 
