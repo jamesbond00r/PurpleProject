@@ -14,7 +14,7 @@ class Call extends React.Component {
        // app loaded before making api call
 	componentDidMount(){
     axios.get("http://34.204.52.29:3050/")
-	.then( result => JSON.stringify(result).split(" "))
+	.then( result => JSON.stringify(result).split('}'))
 	.then(users =>{
           this.setState({
             isLoaded: true,
@@ -43,13 +43,13 @@ class Call extends React.Component {
          //if everything works load the information into the  UI
            else {
            return(
-	<div>
+	<ul>
 	<h1>USers</h1>
 	{this.state.users.map(user=>
-	<div>{user}</div>
+	<li>{user}</li>
 )}
 		 
-         </div>
+         </ul>
                
 );}
 }}

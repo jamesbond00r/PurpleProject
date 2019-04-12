@@ -6,6 +6,7 @@ import Nav from 'react-bootstrap/Nav';
 import axios from 'axios';
 import  Call  from './apis/apiCall.js';
 import  Put   from './apis/put.js';
+import Delete from './apis/Delete.js';
 
 class App extends Component {
     render(){
@@ -20,9 +21,10 @@ class App extends Component {
     </Nav>
   </Navbar>
 
-     <Call/>
-        
-
+     
+        <div>
+	<Delete/>        
+         </div>
       </div>
       
   )}
