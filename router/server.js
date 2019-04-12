@@ -22,14 +22,16 @@ connection.connect(function(err){
 
 
 
-app.all('/', function(req,res,next) {
+app.all('/*', function(req,res,next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    res.header("Access-Control-Allow-Methods","GET,HEAD,POST,DELETE");
     next()
     });
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
+
 
 
 
@@ -45,12 +47,12 @@ app.get('/', function(req, res, next) {
 
 });
   
-var rand = Math.floor(Math.random()*11);
+
 
 app.post('/', function(req, res, next) {
             connection.query('INSERT INTO  test (name) VALUES("guy")', function(error, results, fields){
              if(error) console.log(error)
-            return  res.send("It worked");
+            return  res.send("setn");
 });
 });
 
@@ -62,10 +64,14 @@ app.put('/', function(req, res, next) {
 });
 });
 
-app.delete('/', function(req, res, next) {
-            connection.query("DELETE FROM test WHERE name_id =2", function(error, results, fields){
+
+
+app.delete('/*', function(req, res, next) {
+	var id = req.body.value
+	 connection.query("DELETE FROM test WHERE name_id="+id+'', function(error, results, fields){
              if(error) console.log(error)
-            return  res.send("Delete");
+		
+            return  res.send(req.body);
 });
 });
 
