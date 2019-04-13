@@ -48,8 +48,8 @@ app.get('/*', function(req, res, next) {
   
 
 
-app.post('/post*', function(req, res, next) {
-		var name = res.body.user
+app.post('/post/*', function(req, res, next) {
+		var name = res.body.name
             connection.query('INSERT INTO  test (name) VALUES('+name+')', function(error, results, fields){
              if(error) console.log(error)
             return  res.send("added");

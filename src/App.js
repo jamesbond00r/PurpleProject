@@ -3,7 +3,6 @@ import './App.css';
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
 import Nav from 'react-bootstrap/Nav';
-import axios from 'axios';
 import  Call  from './apis/apiCall.js';
 import  Put   from './apis/put.js';
 import Delete from './apis/Delete.js';
@@ -23,11 +22,20 @@ class App extends Component {
   </Navbar>
 
      
-        <div>
+        <div className="box">
 	
-	        
+	<div className="call">        
 	<Call/>	
+	</div>
+	<div className="post">
+	<Post/>
+	</div>
+	<div className="put">
+	<Put/>
+	</div>
+	<div className="delete">
 	<Delete/>
+	</div>
          </div>
       </div>
       
