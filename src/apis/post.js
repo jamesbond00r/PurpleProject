@@ -16,33 +16,32 @@ class Post  extends React.Component {
 	 
  }
   
-  handleSubmit(event){  
-  var params =`{name:${this.state.nameFirst}}`
-  var url = `http://34.204.52.29:3050/post/`
-  var requestOptions= {
-  method: 'post',
-  headers: {
-'Accept': 'application/json',
-'Content-type': 'application/json'},
-body: JSON.stringify(this.state.nameFirst)
+  handleSubmit(event){
+  
+  var params = this.state
+
+  var url = "34.204.52.29:3050/"
+  var mhc =  {
+   method: 'POST',
+   headers: {
+   'Content-type': 'application/json'},
+    body: JSON.stringify(params)
   };
   event.preventDefault();
-  var encoded = window.encodeURI(url+requestOptions)
+  var encoded = window.encodeURI(url+mhc)
   
   fetch(encoded)
-     .then(res => {
-            console.log(res);
+     .then(res =>{ console.log(res);
             
-  
-         })
-    }
+ }) 
+}        
 
   render(){
          return(
   <div>
         <form onSubmit={this.handleSubmit}>
   <label>
-  Person name:
+  New Todod:
   <input type="text" value={this.state.value}  onChange={this.handleChange} />
   </label>
   <Button   type="submit">Submit</Button>

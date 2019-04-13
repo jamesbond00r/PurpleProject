@@ -45,10 +45,10 @@ class Call extends React.Component {
            else {
            return(
 	<ul>
-	<h1>Users</h1>
+	<h1>Todo</h1>
 	{this.state.users.map(user=>
 	
-	<li>{user.replace(/name/gi,"FirstName" )}</li>
+	<li>{user.replace(/name/gi,"Task" )}</li>
 )}
 		 
          </ul>
