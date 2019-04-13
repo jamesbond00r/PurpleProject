@@ -14,14 +14,19 @@ class Delete  extends React.Component {
 	handleChange = event=>{
 	 this.setState({id: event.target.value});
 	}
-		
 	
-
-	handleSubmit(event){
+	handleSubmit(event){	
+	var params =`{id:${this.state.id}}`
+	var url = `http://34.204.52.29:3050/delete/`
+	var requestOptions= {
+	method: 'DELETE',
+	body: this.state.id,
+	headers: {'Content-type': 'application/x-www-form-urlencoded'}
+	};
 	event.preventDefault();
-	alert(this.state.id)
-	axios.delete("http://34.204.52.29:3050/delete", {body: { id:this.state.id}}
-		)
+	var encoded = window.encodeURI(url+requestOptions)
+	
+	fetch(url+requestOptions)
 	   .then(res => {
             console.log(res);
             console.log(res.data);
