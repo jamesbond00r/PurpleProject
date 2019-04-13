@@ -1,46 +1,53 @@
 import React, { Component } from 'react';
 import axios from "axios";
+import Button from 'react-bootstrap/Button';
 
-class Put extends React.Component {
-    state = {
-	error: null,
-	isLoaded: false,
-	items: []
-};
+class Put  extends React.Component {
+	constructor(props){
+	super(props);
+	this.state = {name:"", num:''}
 
-	componentDidMount(){
-    axios.put("http://34.204.52.29:3001/", "hi").then(
-        result => {
-          this.setState({
-            isLoaded: true,
-            items: result.data
-          });
-    },
-        error => {
-            this.setState({
-            isLoaded: true,
-            error
-            });
-         }
-        );
-       }
+	this.handleidChange = this.handleidChange.bind(this);
+	this.handleNameChange = this.handleNameChange.bind(this);
+	this.handleSubmit = this.handleSubmit.bind(this);
+	}	
 
-    render(){
-     const { error, isLoaded, items } = this.state;
-     if (error) {
-        return <div>Error: {error.message}</div>;
-       }
-           else if (!isLoaded){  
-               return <div>Loading...</div>;
-      }
-           else {
-           return(
-              <div>
-               <div>
-              {items}
-                </div>
-            ))}
-         </div>
-);}}}
+	handleidChange=event=>{
+	 this.setState({num:event.target.value});
+	}
+	handleNameChange =event=>{
+	this.setState({name:event.target.value});
+	}
+
+	handleSubmit(event){
+	event.preventDefault();
+	alert(this.state.name)
+	alert(this.state.num)
+	axios.put(`http://34.204.52.29:3050/put${this.state.name}${this.state.num}`)
+	   .then(res => {
+            console.log(res);
+            console.log(res.data);
+	
+         })
+    }
+
+	render(){
+         return(
+	<div>
+        <form onSubmit={this.handleSubmit}>
+	<label>
+	Name ID:
+	<input type="text" value={this.state.value} onChange={this.handleidChange} />
+	</label>
+	<label>
+	Person Name Change:
+	<input type="text" value={this.state.value}  onChange={this.handleNameChange} />
+	</label>
+	<Button variant="success"  type="submit">Put/Update</Button>
+	</form>
+	</div>
+)}}
+
+
 
 export default Put;
