@@ -29,9 +29,8 @@ app.all('/*', function(req,res,next) {
     next()
     });
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json())
 
 
 
@@ -40,7 +39,7 @@ app.get('/', function(req, res, next) {
            if(error){
 		res.send(JSON.stringify({"Status": 500, "error": error, "response": null}));
            } else {
-           res.send({test : results})
+           res.send(res);
            //connection.end()
         }
 });
@@ -49,16 +48,19 @@ app.get('/', function(req, res, next) {
   
 
 
-app.post('/', function(req, res, next) {
-            connection.query('INSERT INTO  test (name) VALUES("guy")', function(error, results, fields){
+app.post('/post*', function(req, res, next) {
+		var name = res.body.user
+            connection.query('INSERT INTO  test (name) VALUES('+name+')', function(error, results, fields){
              if(error) console.log(error)
-            return  res.send("setn");
+            return  res.send("added");
 });
 });
 
 
-app.put('/', function(req, res, next) {
-            connection.query("UPDATE test SET name ='Updated'  WHERE name_id = 2", function(error, results, fields){
+app.put('/put*', function(req, res, next) {
+         var name = res.body.user   
+	var num = res.body.num
+	 connection.query("UPDATE test SET name ='"+name+"'  WHERE name_id ="+num , function(error, results, fields){
              if(error) console.log(error)
             return  res.send("Updated");
 });
@@ -66,8 +68,8 @@ app.put('/', function(req, res, next) {
 
 
 
-app.delete('/*', function(req, res, next) {
-	var id = req.body.value
+app.delete('/delete*', function(req, res, next) {
+	var id = req.body.id
 	 connection.query("DELETE FROM test WHERE name_id="+id+'', function(error, results, fields){
              if(error) console.log(error)
 		

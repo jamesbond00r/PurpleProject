@@ -7,6 +7,7 @@ import axios from 'axios';
 import  Call  from './apis/apiCall.js';
 import  Put   from './apis/put.js';
 import Delete from './apis/Delete.js';
+import  Post from './apis/post.js';
 
 class App extends Component {
     render(){
@@ -23,7 +24,10 @@ class App extends Component {
 
      
         <div>
-	<Delete/>        
+	<Call/>
+	<Post/>        
+	<Put/>
+	<Delete/>
          </div>
       </div>
       
