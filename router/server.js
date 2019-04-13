@@ -1,3 +1,4 @@
+
 const express = require('express')
 const app = express()
 const path = require('path');
@@ -29,17 +30,16 @@ app.all('/*', function(req,res,next) {
     next()
     });
 
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json())
 
 
-
-app.get('/', function(req, res, next) {
+app.get('/*', function(req, res, next) {
 	     connection.query('SELECT name FROM test', function(error, results, fileds){
            if(error){
 		res.send(JSON.stringify({"Status": 500, "error": error, "response": null}));
            } else {
-           res.send(res);
+           res.send(results);
            //connection.end()
         }
 });
@@ -68,12 +68,11 @@ app.put('/put*', function(req, res, next) {
 
 
 
-app.delete('/delete*', function(req, res, next) {
-	var id = req.body.id
-	 connection.query("DELETE FROM test WHERE name_id="+id+'', function(error, results, fields){
-             if(error) console.log(error)
+app.delete('/delete/*', function(req, res, next) {
 		
-            return  res.send(req.body);
+connection.query("DELETE FROM test WHERE name_id="+req.body.id+'', function(error, results, fields){
+            if(error) console.log(error)
+            return  res.send("It worked");
 });
 });
 

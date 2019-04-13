@@ -24,9 +24,9 @@ class App extends Component {
 
      
         <div>
-	<Call/>
-	<Post/>        
-	<Put/>
+	
+	        
+	<Call/>	
 	<Delete/>
          </div>
       </div>

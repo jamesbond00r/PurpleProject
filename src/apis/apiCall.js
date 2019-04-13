@@ -13,8 +13,9 @@ class Call extends React.Component {
        //Add api in componentDidMount to make sure the 
        // app loaded before making api call
 	componentDidMount(){
-    axios.get("http://34.204.52.29:3050/")
-	.then( result => JSON.stringify(result).split('}'))
+    axios.get("http://34.204.52.29:3050")
+	.then( result => result.data)
+	.then(result => JSON.stringify(result).split("{"))
 	.then(users =>{
           this.setState({
             isLoaded: true,
@@ -44,9 +45,10 @@ class Call extends React.Component {
            else {
            return(
 	<ul>
-	<h1>USers</h1>
+	<h1>Users</h1>
 	{this.state.users.map(user=>
-	<li>{user}</li>
+	
+	<li>{user.replace(/name/gi,"FirstName" )}</li>
 )}
 		 
          </ul>
@@ -55,4 +57,5 @@ class Call extends React.Component {
 }}
 
 export default Call;
+
 
