@@ -26,7 +26,7 @@ connection.connect(function(err){
 app.all('/*', function(req,res,next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "X-Requested-With");
-    res.header("Access-Control-Allow-Methods","GET,HEAD,POST,DELETE");
+    res.header("Access-Control-Allow-Methods","GET,HEAD,POST,PUT,DELETE");
     next()
     });
 
@@ -48,7 +48,7 @@ app.get('/*', function(req, res, next) {
   
 
 
-app.post('/', function(req, res, next) {
+app.post('/*', function(req, res, next) {
 		function makeid(length) {
   var text = "";
   var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -66,10 +66,11 @@ app.post('/', function(req, res, next) {
 });
 });
 
+var name ="Yoshi";
+var num =4;
 
-app.put('/put', function(req, res, next) {
-         name =  Yoshi;
-	num = 4;
+app.put('/', function(req, res, next) {
+     
 	 connection.query('UPDATE INTO  SET first_name ="'+name+'"  WHERE name_id ="'+ num +'")', function(error, results, fields){
              if(error) console.log(error)
             return  res.send("Updated");
