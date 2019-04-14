@@ -7,7 +7,7 @@ const port = 3051;
 const bodyParser = require("body-parser");
 const mysql = require('mysql');
 
-
+  
   var connection = mysql.createConnection({
     host      : '34.204.52.29',
     port      : '3306',
@@ -20,6 +20,7 @@ connection.connect(function(err){
     if(err) console.log(err);
     console.log("Connected!");
     });
+
 
 
 
@@ -48,7 +49,7 @@ app.get('/*', function(req, res, next) {
   
 
 
-app.post('/*', function(req, res, next) {
+app.post('/', function(req, res, next) {
 		function makeid(length) {
   var text = "";
   var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -66,12 +67,23 @@ app.post('/*', function(req, res, next) {
 });
 });
 
-var name ="Yoshi";
-var num =4;
+
 
 app.put('/', function(req, res, next) {
-     
-	 connection.query('UPDATE INTO  SET first_name ="'+name+'"  WHERE name_id ="'+ num +'")', function(error, results, fields){
+	
+function makeid(length) {
+  	var text = "";
+  	var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+        for (var i = 0; i < length; i++)
+         text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+  return text;
+}     
+	var name  = makeid(Math.floor(Math.random() * 15) +1);
+
+
+	 connection.query('UPDATE Username SET first_name ="'+name+'"  WHERE id ="'+ Math.floor(Math.random() *18) +'"', function(error, results, fields){
              if(error) console.log(error)
             return  res.send("Updated");
 });
