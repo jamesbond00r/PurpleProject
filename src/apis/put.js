@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 class Put  extends React.Component {
 	constructor(props){
 	super(props);
-	this.state = {name:""}
+
 
 
 	this.handleSubmit = this.handleSubmit.bind(this);

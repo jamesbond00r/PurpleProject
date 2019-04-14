@@ -45,10 +45,11 @@ class Call extends React.Component {
            else {
            return(
 	<ul>
-	<h1>Todo</h1>
+	<h1>Random Users</h1>
 	{this.state.users.map(user=>
 	
-	<li>{user.replace(/"first_name"/gi,"Name" )}</li>
+	<li key={user}
+>{user.replace(/"first_name"/gi,"Name" )}</li>
 )}
 		 
          </ul>

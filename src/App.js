@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
 import './App.css';
 import Navbar from 'react-bootstrap/Navbar';
-import Button from 'react-bootstrap/Button';
 import Nav from 'react-bootstrap/Nav';
 import  Call  from './apis/apiCall.js';
 import  Put   from './apis/put.js';
 import Delete from './apis/Delete.js';
 import  Post from './apis/post.js';
+import  About from './about.js';
 
 class App extends Component {
     render(){
 	return(
       
       <div>
- <Navbar bg="dark" variant="dark">
-    <Navbar href="#home">Navbar</Navbar>
+ <Navbar bg="info" variant="dark">
+    <Navbar href="#home">Random Users Generator</Navbar>
     <Nav className="mr-auto">
       <Nav.Link href="#home">Home</Nav.Link>
       
@@ -23,7 +23,9 @@ class App extends Component {
 
      
         <div className="box">
-	
+	<header className="header">
+	<div className="header_box"> </div>
+	</header>
 	<div className="call">        
 	<Call/>	
 	</div>
@@ -35,6 +37,10 @@ class App extends Component {
 	</div>
 	<div className="delete">
 	<Delete/>
+	
+	</div>
+	<div className="about">
+	<About/>
 	</div>
          </div>
       </div>

@@ -91,9 +91,9 @@ function makeid(length) {
 
 
 
-app.delete('/delete/*', function(req, res, next) {
-		
-connection.query("DELETE FROM test WHERE name_id="+req.body.id+'', function(error, results, fields){
+app.delete('/', function(req, res, next) {
+		var num = Math.floor(Math.random() *30)+1;
+connection.query('DELETE FROM Username WHERE id="'+num+'"', function(error, results, fields){
             if(error) console.log(error)
             return  res.send("It worked");
 });
