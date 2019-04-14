@@ -3,7 +3,7 @@ const express = require('express')
 const app = express()
 const path = require('path');
 const router = express.Router();
-const port = 3050;
+const port = 3051;
 const bodyParser = require("body-parser");
 const mysql = require('mysql');
 
@@ -35,7 +35,7 @@ app.use(bodyParser.json())
 
 
 app.get('/*', function(req, res, next) {
-	     connection.query('SELECT name FROM test', function(error, results, fileds){
+	     connection.query('SELECT *  FROM Username', function(error, results, fileds){
            if(error){
 		res.send(JSON.stringify({"Status": 500, "error": error, "response": null}));
            } else {
@@ -48,19 +48,29 @@ app.get('/*', function(req, res, next) {
   
 
 
-app.post('/post/*', function(req, res, next) {
-		var name = res.body.name
-            connection.query('INSERT INTO  test (name) VALUES('+name+')', function(error, results, fields){
+app.post('/', function(req, res, next) {
+		function makeid(length) {
+  var text = "";
+  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+  for (var i = 0; i < length; i++)
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+  return text;
+}
+	var add  = makeid(5);
+	var email = add+"@gmail.com"
+            connection.query('INSERT INTO Username (first_name, email) VALUES("'+ add +'","'+ email +'")', function(error, results, fields){
              if(error) console.log(error)
             return  res.send("added");
 });
 });
 
 
-app.put('/put*', function(req, res, next) {
-         var name = res.body.user   
-	var num = res.body.num
-	 connection.query("UPDATE test SET name ='"+name+"'  WHERE name_id ="+num , function(error, results, fields){
+app.put('/put', function(req, res, next) {
+         name =  Yoshi;
+	num = 4;
+	 connection.query('UPDATE INTO  SET first_name ="'+name+'"  WHERE name_id ="'+ num +'")', function(error, results, fields){
              if(error) console.log(error)
             return  res.send("Updated");
 });

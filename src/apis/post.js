@@ -7,45 +7,28 @@ class Post  extends React.Component {
   super(props);
   this.state = {nameFirst:""}
 
-  this.handleChange = this.handleChange.bind(this);
+ 
   this.handleSubmit = this.handleSubmit.bind(this);
   } 
 
-  handleChange = event=>{
-   this.setState({nameFirst: event.target.value});
-	 
- }
+ 
   
-  handleSubmit(event){
+  handleSubmit(event){  
   
-  var params = this.state
-
-  var url = "34.204.52.29:3050/"
-  var mhc =  {
-   method: 'POST',
-   headers: {
-   'Content-type': 'application/json'},
-    body: JSON.stringify(params)
-  };
-  event.preventDefault();
-  var encoded = window.encodeURI(url+mhc)
-  
-  fetch(encoded)
-     .then(res =>{ console.log(res);
-            
- }) 
-}        
-
+  fetch("http://34.204.52.29:3051/",{
+	method:'post'}).then(function(res){
+	console.log(res);
+}).catch(function(error){
+console.log(error);});
+}
   render(){
          return(
   <div>
-        <form onSubmit={this.handleSubmit}>
   <label>
-  New Todod:
-  <input type="text" value={this.state.value}  onChange={this.handleChange} />
-  </label>
-  <Button   type="submit">Submit</Button>
-  </form>
+  New User:
+   </label>
+  <Button  onClick={this.handleSubmit}  type="submit">Submit</Button>
+  
   </div>
 )}}
 

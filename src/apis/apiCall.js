@@ -13,7 +13,7 @@ class Call extends React.Component {
        //Add api in componentDidMount to make sure the 
        // app loaded before making api call
 	componentDidMount(){
-    axios.get("http://34.204.52.29:3050")
+    axios.get("http://34.204.52.29:3051")
 	.then( result => result.data)
 	.then(result => JSON.stringify(result).split("{"))
 	.then(users =>{
@@ -48,7 +48,7 @@ class Call extends React.Component {
 	<h1>Todo</h1>
 	{this.state.users.map(user=>
 	
-	<li>{user.replace(/name/gi,"Task" )}</li>
+	<li>{user.replace(/"first_name"/gi,"Name" )}</li>
 )}
 		 
          </ul>
