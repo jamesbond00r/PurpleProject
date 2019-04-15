@@ -58,7 +58,7 @@ app.post('/', function(req, res, next) {
     text += possible.charAt(Math.floor(Math.random() * possible.length));
 
   return text;
-}
+}	console.log(typeof req.body);
 	var add  = makeid(5);
 	var email = add+"@gmail.com"
             connection.query('INSERT INTO Username (first_name, email) VALUES("'+ add +'","'+ email +'")', function(error, results, fields){
