@@ -50,15 +50,7 @@ app.get('/*', function(req, res, next) {
 
 
 app.post('/', function(req, res, next) {
-		function makeid(length) {
-  var text = "";
-  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
-  for (var i = 0; i < length; i++)
-    text += possible.charAt(Math.floor(Math.random() * possible.length));
-
-  return text;
-}	var regex =/[A-Za-z]/g
+	var regex =/[A-Za-z]/g
 	var add =JSON.stringify(req.body).match(regex).join('');
 	var email = add+"@gmail.com"
             connection.query('INSERT INTO Username (first_name, email) VALUES("'+ add +'","'+ email +'")', function(error, results, fields){
@@ -92,7 +84,9 @@ function makeid(length) {
 
 
 app.delete('/', function(req, res, next) {
-		var num = Math.floor(Math.random() *30)+1;
+	console.log(req.body)
+	var regex =/[0-9][0-9]/g	
+	var num = JSON.stringify(req.body).match(regex).join('');
 connection.query('DELETE FROM Username WHERE id="'+num+'"', function(error, results, fields){
             if(error) console.log(error)
             return  res.send("It worked");
