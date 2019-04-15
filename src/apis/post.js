@@ -6,12 +6,14 @@ class Post  extends React.Component {
   constructor(props){
   super(props);
   this.state = {nameFirst:"Rob"}
-
- 
+  
+  this.handleChange = this.handleChange.bind(this);
   this.handleSubmit = this.handleSubmit.bind(this);
   } 
 
- 
+  handleChange(event){
+	this.setState({nameFirst:event.target.value});
+}
   
   handleSubmit(event){  
   
@@ -22,7 +24,7 @@ class Post  extends React.Component {
 	headers: {
 	'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
 	},
-	body:JSON.stringify(this.state.nameFirst)}).then(function(res){
+	body: JSON.stringify(this.state.nameFirst)}).then(function(res){
 	console.log(res);
 }).catch(function(error){
 console.log(error);});
@@ -30,11 +32,13 @@ console.log(error);});
   render(){
          return(
   <div>
+	<form onSubmit={this.handleSubmit}>
   <label>
   New User:
+	<input type="text"  value={this.state.value} onChange={this.handleChange}/>
    </label>
-  <Button  onClick={this.handleSubmit}  type="submit">Submit</Button>
-  
+  <Button type="submit">Submit</Button>
+  	</form>
   </div>
 )}}
 
