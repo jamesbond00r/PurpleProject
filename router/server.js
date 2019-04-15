@@ -63,19 +63,13 @@ app.post('/', function(req, res, next) {
 
 app.put('/', function(req, res, next) {
 	
-function makeid(length) {
-  	var text = "";
-  	var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+	var regex = /[A-Za-z]/g
+	var regexid = /[0-9][0-9]/g
+	var name  =  JSON.stringify(req.body).match(regex).join('');
+	var id  = JSON.stringify(req.body).match(regexid).join('');
+	console.log(req.body);
 
-        for (var i = 0; i < length; i++)
-         text += possible.charAt(Math.floor(Math.random() * possible.length));
-
-  return text;
-}     
-	var name  = makeid(Math.floor(Math.random() * 15) +1);
-
-
-	 connection.query('UPDATE Username SET first_name ="'+name+'"  WHERE id ="'+ Math.floor(Math.random() *18) +'"', function(error, results, fields){
+	 connection.query('UPDATE Username SET first_name ="'+name+'"  WHERE id ="'+ id  +'"', function(error, results, fields){
              if(error) console.log(error)
             return  res.send("Updated");
 });
