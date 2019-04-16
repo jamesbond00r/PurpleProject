@@ -50,6 +50,8 @@ app.get('/*', function(req, res, next) {
 
 
 app.post('/', function(req, res, next) {
+
+
 	var regex =/[A-Za-z]/g
 	var add =JSON.stringify(req.body).match(regex).join('');
 	var email = add+"@gmail.com"
@@ -62,13 +64,14 @@ app.post('/', function(req, res, next) {
 
 
 app.put('/', function(req, res, next) {
-	
+
 	var regex = /[A-Za-z]/g
 	var regexid = /[0-9][0-9]/g
 	var name  =  JSON.stringify(req.body).match(regex).join('');
 	var id  = JSON.stringify(req.body).match(regexid).join('');
 	console.log(req.body);
 
+	
 	 connection.query('UPDATE Username SET first_name ="'+name+'"  WHERE id ="'+ id  +'"', function(error, results, fields){
              if(error) console.log(error)
             return  res.send("Updated");

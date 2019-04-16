@@ -20,26 +20,27 @@ class Put  extends React.Component {
 }
 
 	handleSubmit(event) {
-	var id = this.state.id
-	var name = this.state.name
+	var name = {}
+	name[0] = this.state.name
+	name[1] = this.state.id
+	var combo = name
 	fetch("http://34.204.52.29:3051/",{
-		method:'PUT',
-		mode: "cors",
-		credentials: "same-origin",
-		headers:{
-		'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'
-		},
-		body: JSON.stringify(this.state)}).then(function(res){
-		console.log(res);
+	method:'put',
+	mode: "cors",
+	credentials: "same-origin",
+	headers: {
+	'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+	},
+	body: JSON.stringify(name)}).then(function(res){
+	console.log(res);
 	}).catch(function(error){
 	console.log(error);});
-	
-    }
+	}
 
 	render(){
          return(
 	<div>
-        <form>
+        <form onSubmit={this.handleSubmit}>
 	<label>
 	 Name Update:
 	</label>
@@ -48,7 +49,7 @@ class Put  extends React.Component {
 	Id please
 	</label>
 	<input type="text"  onChange={this.handleIdChange}/>
-	<Button onClick={this.handleSubmit}  variant="success"  type="submit">Put/Update</Button>
+	<Button  variant="success"  type="submit">Put/Update</Button>
 	</form>
 	</div>
 )}}
