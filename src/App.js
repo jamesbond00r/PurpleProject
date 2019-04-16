@@ -24,20 +24,28 @@ class App extends Component {
      
         <div className="box">
 	<header className="header">
+	
 	<div className="header_box"> </div>
 	</header>
 	<div className="call">        
+	<div className="animated  rotateIn">
 	<Call/>	
 	</div>
+	</div>
 	<div className="post">
-	<Post/>
+	<div className="animated pulse delay-3s">	
+        <Post/>
+	</div>
 	</div>
 	<div className="put">
-	<Put/>
+	<div className="animated pulse delay-4s">	
+       <Put/>
+	</div>
 	</div>
 	<div className="delete">
+	<div className="animated pulse delay-4s">
 	<Delete/>
-	
+	</div>
 	</div>
 	<div className="about">
 	<About/>

@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "animate.css": "^3.7.0",
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "bootstrap": "^4.3.1",
@@ -20,8 +21,6 @@
     "eject": "react-scripts eject",
     "run": "server.js"
   },
-   
-
   "eslintConfig": {
     "extends": "react-app"
   },

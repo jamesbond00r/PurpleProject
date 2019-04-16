@@ -1,5 +1,3 @@
-
-
 import React, { Component } from 'react';
 import axios from "axios";
 
@@ -15,7 +13,7 @@ class Call extends React.Component {
 	componentDidMount(){
     axios.get("http://34.204.52.29:3052")
 	.then( result => result.data)
-	.then(result => JSON.stringify(result).split("{"))
+	.then(result => JSON.stringify(result).split("}"))
 	.then(users =>{
           this.setState({
             isLoaded: true,
@@ -57,5 +55,3 @@ class Call extends React.Component {
 }}
 
 export default Call;
-
-
