@@ -15,7 +15,7 @@ class Delete  extends React.Component {
 }	
 	
 	handleSubmit(event){
-	fetch("http://34.204.52.29:3051/",{
+	fetch("http://34.204.52.29:3052/",{
 	method: "DELETE",
 	mode: "cors",
 	credentials: "same-origin",
@@ -33,7 +33,7 @@ class Delete  extends React.Component {
 	<div>
 	<form onSubmit={this.handleSubmit}>
 	<label>
-	 Delete by id number:
+	 Delete Task By Number:
 	<input type="text" value={this.state.value} onChange={this.handleChange}/>
 	</label>
 	<Button onClick={this.handleSubmit} variant="danger"  type="submit">Delete</Button>

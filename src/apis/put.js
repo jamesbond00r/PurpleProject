@@ -24,7 +24,7 @@ class Put  extends React.Component {
 	name[0] = this.state.name
 	name[1] = this.state.id
 	var combo = name
-	fetch("http://34.204.52.29:3051/",{
+	fetch("http://34.204.52.29:3052/",{
 	method:'put',
 	mode: "cors",
 	credentials: "same-origin",
@@ -42,7 +42,7 @@ class Put  extends React.Component {
 	<div>
         <form onSubmit={this.handleSubmit}>
 	<label>
-	 Name Update:
+	 Task Name  Update:
 	</label>
 	<input type="text"  onChange={this.handleNameChange}/>
 	<label>

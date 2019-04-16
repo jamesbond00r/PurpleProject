@@ -5,19 +5,20 @@ import Button from 'react-bootstrap/Button';
 class Post  extends React.Component {
   constructor(props){
   super(props);
-  this.state = {nameFirst:"Rob"}
+  this.state = {nameFirst:"Rob", Des:""}
   
   this.handleChange = this.handleChange.bind(this);
   this.handleSubmit = this.handleSubmit.bind(this);
-  } 
+   } 
 
   handleChange(event){
 	this.setState({nameFirst:event.target.value});
 }
+
   
   handleSubmit(event){  
   
-  fetch("http://34.204.52.29:3051/",{
+  fetch("http://34.204.52.29:3052/",{
 	method:'post',
 	mode: "cors",
 	credentials: "same-origin",
@@ -34,9 +35,10 @@ console.log(error);});
   <div>
 	<form onSubmit={this.handleSubmit}>
   <label>
-  New User:
+  New Task:
 	<input type="text"  value={this.state.value} onChange={this.handleChange}/>
    </label>
+	
   <Button type="submit">Submit</Button>
   	</form>
   </div>

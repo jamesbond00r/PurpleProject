@@ -3,7 +3,7 @@ const express = require('express')
 const app = express()
 const path = require('path');
 const router = express.Router();
-const port = 3051;
+const port = 3052;
 const bodyParser = require("body-parser");
 const mysql = require('mysql');
 
@@ -36,7 +36,7 @@ app.use(bodyParser.json())
 
 
 app.get('/*', function(req, res, next) {
-	     connection.query('SELECT *  FROM Username', function(error, results, fileds){
+	     connection.query('SELECT id As Task_Number, Task_name As Task, task AS Todo FROM Username', function(error, results, fileds){
            if(error){
 		res.send(JSON.stringify({"Status": 500, "error": error, "response": null}));
            } else {
@@ -52,10 +52,10 @@ app.get('/*', function(req, res, next) {
 app.post('/', function(req, res, next) {
 
 
-	var regex =/[A-Za-z]/g
+	var regex =/[A-Za-z ]/g
 	var add =JSON.stringify(req.body).match(regex).join('');
-	var email = add+"@gmail.com"
-            connection.query('INSERT INTO Username (first_name, email) VALUES("'+ add +'","'+ email +'")', function(error, results, fields){
+	var email ="New Task  "
+            connection.query('INSERT INTO Username (task_name, task) VALUES("'+ email  +'","'+ add +'")', function(error, results, fields){
              if(error) console.log(error)
             return  res.send("added");
 });
@@ -72,7 +72,7 @@ app.put('/', function(req, res, next) {
 	console.log(req.body);
 
 	
-	 connection.query('UPDATE Username SET first_name ="'+name+'"  WHERE id ="'+ id  +'"', function(error, results, fields){
+	 connection.query('UPDATE Username SET Task_name ="'+name+'"  WHERE id ="'+ id  +'"', function(error, results, fields){
              if(error) console.log(error)
             return  res.send("Updated");
 });

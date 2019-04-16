@@ -14,7 +14,7 @@ class App extends Component {
       
       <div>
  <Navbar bg="info" variant="dark">
-    <Navbar href="#home">Random Users Generator</Navbar>
+    <Navbar href="#home">Todo List</Navbar>
     <Nav className="mr-auto">
       <Nav.Link href="#home">Home</Nav.Link>
       

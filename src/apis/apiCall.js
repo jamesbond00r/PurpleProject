@@ -13,7 +13,7 @@ class Call extends React.Component {
        //Add api in componentDidMount to make sure the 
        // app loaded before making api call
 	componentDidMount(){
-    axios.get("http://34.204.52.29:3051")
+    axios.get("http://34.204.52.29:3052")
 	.then( result => result.data)
 	.then(result => JSON.stringify(result).split("{"))
 	.then(users =>{
@@ -45,11 +45,10 @@ class Call extends React.Component {
            else {
            return(
 	<ul>
-	<h1>Random Users</h1>
+	<h1>Todo List</h1>
 	{this.state.users.map(user=>
 	
-	<li key={user}
->{user.replace(/"first_name"/gi,"Name" )}</li>
+	<li key={user}>{user}</li>
 )}
 		 
          </ul>
